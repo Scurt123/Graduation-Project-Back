@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 配置自动扫描的包 -->
+    <context:component-scan base-package="com.jan.crowd.funding.handler"/>
+    <context:component-scan base-package="com.jan.crowd.funding.exception"/>
+    <context:component-scan base-package="com.jan.crowd.funding.config"/>
+
+
+    <!-- 配置SpringMVC标配：注解驱动 -->
+    <mvc:annotation-driven/>
+    <!-- 配置视图解析器 -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 直接配置路由 -->
+    <mvc:view-controller path="/back/login.html" view-name="back-login"/>
+    <mvc:view-controller path="/back/index.html" view-name="back-main" />
+    <mvc:view-controller path="/admin/add.html" view-name="admin-add" />
+    <mvc:view-controller path="/role/page.html" view-name="role-page" />
+
+    <!-- 配置拦截器 -->
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash; 设置当前拦截器要拦截的路径 &ndash;&gt;-->
+            <!--<mvc:mapping path="/**"/>-->
+
+            <!--&lt;!&ndash; 设置要拦截的路径中的例外，也就是不拦截的路径 &ndash;&gt;-->
+            <!--<mvc:exclude-mapping path="/admin/login.html"/>-->
+            <!--<mvc:exclude-mapping path="/admin/do/login.html"/>-->
+            <!--<mvc:exclude-mapping path="/admin/logout.html"/>-->
+
+            <!--&lt;!&ndash; 拦截器的bean &ndash;&gt;-->
+            <!--<bean class="com.jan.crowd.funding.interceptor.LoginInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+
+</beans>
